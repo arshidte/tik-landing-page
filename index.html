@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TIK — The Interior Kampany · Space, in motion.</title>
+<meta name="description" content="TIK — The Interior Kampany. A design-led interior brand and technology-enabled execution studio. We don't design interiors. We design how you live." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,340;0,9..144,400;0,9..144,500;1,9..144,340&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+
+<!-- ══════════════  LOADER  ══════════════ -->
+<div class="loader" id="loader">
+  <div class="l-inner">
+    <div class="l-mark">TIK<span class="dot">.</span></div>
+    <div class="l-bar"><i></i></div>
+    <div class="l-pct"><span id="l-pct">00</span> — SPACE, IN MOTION</div>
+  </div>
+</div>
+
+<!-- ══════════════  CURSOR  ══════════════ -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"><span class="cursor-word">View</span></div>
+
+<!-- ══════════════  PROGRESS + NAV  ══════════════ -->
+<div class="progress" id="progress"></div>
+<header class="nav" id="nav">
+  <a href="#top" class="logo" data-cursor><b>TIK</b><span class="dot">.</span></a>
+  <nav class="nav-links">
+    <a href="#work" data-cursor>Work</a>
+    <a href="#difference" data-cursor>Approach</a>
+    <a href="#matter" data-cursor>Material</a>
+    <a href="#process" data-cursor>Process</a>
+    <a href="#journal" data-cursor>Journal</a>
+  </nav>
+  <a href="#contact" class="nav-cta magnetic" data-cursor>Start a Project</a>
+  <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+</header>
+
+<!-- ══════════════  MOBILE MENU  ══════════════ -->
+<div class="menu" id="menu">
+  <button class="menu-close" id="menu-close">Close</button>
+  <nav>
+    <a href="#work" data-menu>Work</a>
+    <a href="#difference" data-menu>Approach</a>
+    <a href="#matter" data-menu>Material</a>
+    <a href="#process" data-menu>Process</a>
+    <a href="#journal" data-menu>Journal</a>
+    <a href="#contact" data-menu>Contact</a>
+  </nav>
+</div>
+
+<main id="top">
+
+  <!-- ══════════════  01 · HERO — 3D ARCHITECTURAL EXPERIENCE  ══════════════ -->
+  <section id="hero">
+    <div class="hero-stage">
+      <!-- scroll-scrubbed hero film (all-intra, seekable frame-by-frame) -->
+      <video id="hero-video" class="hero-video" muted playsinline preload="auto"
+             disablepictureinpicture>
+        <source src="assets/hero_scrub.mp4" type="video/mp4" />
+      </video>
+      <!-- WebGL scene: automatic fallback if the video can't decode -->
+      <canvas id="scene-canvas"></canvas>
+      <div class="hero-fallback"></div>
+
+      <!-- real-project photograph revealed at hero exit -->
+      <div class="hero-photo" id="hero-photo"
+           style="background-image:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop')"></div>
+
+      <!-- editorial frames -->
+      <div class="hero-frames">
+        <div class="frame f1" data-frame>
+          <div class="big serif">We start<br>with space.</div>
+          <div class="sub">Before furniture. Before finishes. Before decoration.</div>
+        </div>
+        <div class="frame f2" data-frame>
+          <div class="big serif">Then we give<br>it purpose.</div>
+        </div>
+        <div class="frame f3" data-frame>
+          <div class="big serif">Detail<br>becomes design.</div>
+        </div>
+        <div class="frame f4" data-frame>
+          <div class="big serif">Design<br>becomes home.</div>
+        </div>
+        <div class="frame ffinal" data-frame>
+          <div class="big serif">This is TIK.</div>
+        </div>
+      </div>
+
+      <div class="hero-cta" id="hero-cta">
+        <a href="#contact" class="btn light magnetic" data-cursor>Start your project <span class="arrow">→</span></a>
+        <a href="#work" class="btn light magnetic" data-cursor style="background:transparent">Explore our work</a>
+      </div>
+
+      <div class="scroll-hint" id="scroll-hint">
+        Scroll to enter
+        <div class="bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  06 · BRAND STATEMENT  ══════════════ -->
+  <section class="brand-statement section-pad">
+    <div class="wrap grid12">
+      <h2 class="big" style="grid-column:1 / span 9" data-reveal-words>
+        We don't design interiors. We design <em>how you live.</em>
+      </h2>
+      <p class="meta fade-up" data-fade>
+        TIK is a design-led interior studio and a technology-enabled execution company.
+        One vision, carried from the first sketch to the last detail — and made real.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════  07 · SELECTED SPACES  ══════════════ -->
+  <section class="projects section-pad" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="label" data-fade>01 — Portfolio</div>
+          <h2 data-reveal-words>Selected Spaces</h2>
+        </div>
+        <div class="idx fade-up" data-fade>2019 — 2026 · Bengaluru & beyond</div>
+      </div>
+
+      <!-- Project 01 — full-bleed wide -->
+      <article class="project p-wide grid12" data-project data-cursor-view>
+        <div class="project-media" data-parallax>
+          <span class="tag">Residential · Bengaluru</span>
+          <img loading="lazy" data-img
+            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000&auto=format&fit=crop" alt="The Quiet House" />
+        </div>
+        <div class="project-info" style="grid-column:1 / -1">
+          <div class="t"><span class="n">01</span>The Quiet House</div>
+          <div class="m"><span>Residential</span><span>Bengaluru</span><span>2,850 sq.ft.</span></div>
+        </div>
+      </article>
+
+      <!-- Project 02 — media left, caption right -->
+      <article class="project p-left grid12" data-project data-cursor-view>
+        <div class="project-media" data-parallax>
+          <span class="tag">Workspace · Bengaluru</span>
+          <img loading="lazy" data-img
+            src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop" alt="Studio North" />
+        </div>
+        <div class="caption">
+          <div class="t serif" style="font-size:clamp(26px,3vw,46px)"><span class="n" style="color:var(--clay)">02</span> Studio North</div>
+          <p class="lead" style="margin-top:16px">A workspace that reads like a home — soft light, honest materials, room to think.</p>
+          <p>Workspace · Bengaluru · 4,200 sq.ft.</p>
+          <a class="more" data-cursor>Open case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <!-- Project 03 — caption left, media right -->
+      <article class="project p-right grid12" data-project data-cursor-view>
+        <div class="caption">
+          <div class="t serif" style="font-size:clamp(26px,3vw,46px)"><span class="n" style="color:var(--clay)">03</span> The Terrace Apartment</div>
+          <p class="lead" style="margin-top:16px">Travertine, oak and a long line of afternoon light across the living floor.</p>
+          <p>Residential · Bengaluru · 1,900 sq.ft.</p>
+          <a class="more" data-cursor>Open case study <span class="arrow">→</span></a>
+        </div>
+        <div class="project-media" data-parallax>
+          <span class="tag">Residential · Bengaluru</span>
+          <img loading="lazy" data-img
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1600&auto=format&fit=crop" alt="The Terrace Apartment" />
+        </div>
+      </article>
+
+      <!-- Project 04 — centred tall -->
+      <article class="project p-tall grid12" data-project data-cursor-view>
+        <div class="project-media" data-parallax>
+          <span class="tag">Commercial · Bengaluru</span>
+          <img loading="lazy" data-img
+            src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1800&auto=format&fit=crop" alt="House of Form" />
+        </div>
+        <div class="project-info" style="grid-column:1 / -1">
+          <div class="t"><span class="n">04</span>House of Form</div>
+          <div class="m"><span>Commercial</span><span>Bengaluru</span><span>6,500 sq.ft.</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════  09 · THE TIK DIFFERENCE  ══════════════ -->
+  <section class="diff section-pad" id="difference">
+    <div class="wrap">
+      <div class="reveal-line"><div class="line1" data-line>Design is only half the job.</div></div>
+      <div class="reveal-line"><div class="line1 line2" data-line>The other half is <span class="rt">making it real.</span></div></div>
+
+      <div class="diff-cols">
+        <div class="diff-row" data-fade><div class="k">01</div><div class="h">Design</div><div class="d">Concept, spatial planning and the language of the space.</div></div>
+        <div class="diff-row" data-fade><div class="k">02</div><div class="h">Planning</div><div class="d">Drawings, details and decisions resolved before we build.</div></div>
+        <div class="diff-row" data-fade><div class="k">03</div><div class="h">Procurement</div><div class="d">The right materials, sourced and specified — no surprises.</div></div>
+        <div class="diff-row" data-fade><div class="k">04</div><div class="h">Execution</div><div class="d">Our own site teams turn drawings into built reality.</div></div>
+        <div class="diff-row" data-fade><div class="k">05</div><div class="h">Management</div><div class="d">Timelines, budgets and coordination held to account.</div></div>
+        <div class="diff-row" data-fade><div class="k">06</div><div class="h">Quality Control</div><div class="d">Every joint, every finish, checked against the drawing.</div></div>
+      </div>
+
+      <div class="diff-final" data-fade>
+        <p>One design vision.<br><b>One execution team. One accountable partner.</b></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  10 · DESIGN → EXECUTION SEQUENCE  ══════════════ -->
+  <section class="seq" id="seq">
+    <div class="seq-stage">
+      <div class="seq-caption">
+        <div class="sl" id="seq-label">2D Plan</div>
+        <div class="st serif" id="seq-title">From drawing<br>to space.</div>
+      </div>
+
+      <div class="seq-visual" id="seq-visual">
+        <div class="seq-layer" data-seq="0">
+          <div class="seq-wire" style="opacity:1">
+            <svg viewBox="0 0 900 560" preserveAspectRatio="none">
+              <rect x="40" y="40" width="820" height="480" stroke-width="1.5"/>
+              <line x1="40" y1="220" x2="520" y2="220"/><line x1="520" y1="40" x2="520" y2="520"/>
+              <line x1="520" y1="330" x2="860" y2="330"/><line x1="200" y1="220" x2="200" y2="520"/>
+              <rect x="80" y="80" width="120" height="90" stroke-width="1"/>
+              <rect x="560" y="80" width="150" height="180" stroke-width="1"/>
+              <path d="M40 120 a80 80 0 0 1 80 -80"/>
+              <path d="M520 400 a80 80 0 0 0 80 80"/>
+            </svg>
+          </div>
+        </div>
+        <div class="seq-layer" data-seq="1">
+          <img loading="lazy" data-img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop" alt="3D model" style="filter:grayscale(1) contrast(1.1) brightness(.8)"/>
+        </div>
+        <div class="seq-layer" data-seq="2">
+          <img loading="lazy" data-img src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop" alt="Materials"/>
+        </div>
+        <div class="seq-layer" data-seq="3">
+          <img loading="lazy" data-img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1600&auto=format&fit=crop" alt="Construction"/>
+        </div>
+        <div class="seq-layer" data-seq="4">
+          <img loading="lazy" data-img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1600&auto=format&fit=crop" alt="Final space"/>
+        </div>
+      </div>
+
+      <div class="seq-steps">
+        <div class="ss" data-step="0"><span class="dot"></span>2D Plan</div>
+        <div class="ss" data-step="1"><span class="dot"></span>3D Model</div>
+        <div class="ss" data-step="2"><span class="dot"></span>Materials</div>
+        <div class="ss" data-step="3"><span class="dot"></span>Construction</div>
+        <div class="ss" data-step="4"><span class="dot"></span>Final Space</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  11 · MATERIAL / MATTER  ══════════════ -->
+  <section class="matter" id="matter">
+    <div class="matter-pin" id="matter-pin">
+      <div class="matter-track-wrap">
+        <div class="matter-track" id="matter-track">
+          <div class="matter-intro">
+            <div class="label" data-fade>11 — Material Lab</div>
+            <h2 class="serif">Material<br>/ Matter.</h2>
+            <p>The character of a space lives in what you touch. We choose few materials, and we choose them well.</p>
+          </div>
+
+          <div class="mat-card"><div class="img"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?q=80&w=1000&auto=format&fit=crop" alt="Oak"></div><div class="meta"><span class="name serif">Oak</span><span class="idx">01</span></div><div class="desc">Warmth without excess.</div></div>
+          <div class="mat-card"><div class="img"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1000&auto=format&fit=crop" alt="Travertine"></div><div class="meta"><span class="name serif">Travertine</span><span class="idx">02</span></div><div class="desc">Texture that changes with light.</div></div>
+          <div class="mat-card"><div class="img"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?q=80&w=1000&auto=format&fit=crop" alt="Brass"></div><div class="meta"><span class="name serif">Brass</span><span class="idx">03</span></div><div class="desc">A detail, not a statement.</div></div>
+          <div class="mat-card"><div class="img"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop" alt="Linen"></div><div class="meta"><span class="name serif">Linen</span><span class="idx">04</span></div><div class="desc">Softness that ages gracefully.</div></div>
+          <div class="mat-card"><div class="img"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?q=80&w=1000&auto=format&fit=crop" alt="Concrete"></div><div class="meta"><span class="name serif">Concrete</span><span class="idx">05</span></div><div class="desc">Honesty, cast in place.</div></div>
+          <div class="mat-card"><div class="img"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop" alt="Glass"></div><div class="meta"><span class="name serif">Glass</span><span class="idx">06</span></div><div class="desc">Light, made architecture.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  12 · SERVICES  ══════════════ -->
+  <section class="services section-pad" id="services">
+    <div class="wrap">
+      <div class="section-head" style="border:none">
+        <div><div class="label" style="color:var(--ink-muted)" data-fade>12 — What we do</div>
+        <h2 style="color:var(--ink-fg)" data-reveal-words>Practice</h2></div>
+      </div>
+      <div class="svc-list">
+        <div class="svc" data-svc data-media="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop"><div class="svc-row wrap-none"><div class="k">01</div><div class="t">Residential</div><div class="d">Homes designed around real life.</div></div></div>
+        <div class="svc" data-svc data-media="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop"><div class="svc-row"><div class="k">02</div><div class="t">Workspaces</div><div class="d">Spaces built around people and culture.</div></div></div>
+        <div class="svc" data-svc data-media="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=800&auto=format&fit=crop"><div class="svc-row"><div class="k">03</div><div class="t">Commercial</div><div class="d">Identity translated into physical space.</div></div></div>
+        <div class="svc" data-svc data-media="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"><div class="svc-row"><div class="k">04</div><div class="t">Turnkey</div><div class="d">Design and execution under one roof.</div></div></div>
+        <div class="svc" data-svc data-media="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=800&auto=format&fit=crop"><div class="svc-row"><div class="k">05</div><div class="t">Renovation</div><div class="d">Existing spaces, reconsidered.</div></div></div>
+      </div>
+    </div>
+    <div class="svc-media" id="svc-media"><img id="svc-media-img" src="" alt=""></div>
+  </section>
+
+  <!-- ══════════════  13 · PROCESS  ══════════════ -->
+  <section class="process section-pad" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="label" data-fade>13 — How it happens</div>
+        <h2 data-reveal-words>Process</h2></div>
+      </div>
+      <div class="proc-rail" id="proc-rail">
+        <div class="proc-step" data-proc><span class="dot"></span><div class="k serif">01</div><div class="t serif">Discover</div><div class="d">We understand you — how you live, how you work, what you want to feel.</div></div>
+        <div class="proc-step" data-proc><span class="dot"></span><div class="k serif">02</div><div class="t serif">Define</div><div class="d">We establish the direction — the concept, the constraints, the plan.</div></div>
+        <div class="proc-step" data-proc><span class="dot"></span><div class="k serif">03</div><div class="t serif">Design</div><div class="d">We turn ideas into space — drawings, materials, light.</div></div>
+        <div class="proc-step" data-proc><span class="dot"></span><div class="k serif">04</div><div class="t serif">Detail</div><div class="d">We resolve every decision before it reaches the site.</div></div>
+        <div class="proc-step" data-proc><span class="dot"></span><div class="k serif">05</div><div class="t serif">Build</div><div class="d">We bring the design to life with our own execution team.</div></div>
+        <div class="proc-step" data-proc><span class="dot"></span><div class="k serif">06</div><div class="t serif">Reveal</div><div class="d">You walk into something that feels, unmistakably, yours.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  14 · THE HUMAN SIDE  ══════════════ -->
+  <section class="human section-pad" id="human">
+    <div class="wrap">
+      <p class="human-lead" data-reveal-words>Behind every precise space are <em>people who care</em> about the details.</p>
+      <div class="human-grid">
+        <figure class="hg-1"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1503389152951-9f343605f61e?q=80&w=1000&auto=format&fit=crop" alt=""><figcaption>Studio · Material selection</figcaption></figure>
+        <figure class="hg-2"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1400&auto=format&fit=crop" alt=""><figcaption>Site visit · In progress</figcaption></figure>
+        <figure class="hg-3"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=1000&auto=format&fit=crop" alt=""><figcaption>Detail · Joinery</figcaption></figure>
+        <figure class="hg-4"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1503174971373-b1f69850bded?q=80&w=1000&auto=format&fit=crop" alt=""><figcaption>Drawings · Review</figcaption></figure>
+        <figure class="hg-5"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1000&auto=format&fit=crop" alt=""><figcaption>Craft · On the bench</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  15 · TRUST  ══════════════ -->
+  <section class="trust section-pad" id="trust">
+    <div class="wrap">
+      <div class="section-head"><div><div class="label" data-fade>15 — Proof</div><h2 data-reveal-words>By the numbers</h2></div>
+      <div class="idx fade-up" data-fade>Replace “XX” with TIK's real figures</div></div>
+      <div class="stats">
+        <div class="stat" data-fade><div class="v num">XX<span class="u">+</span></div><div class="l">Spaces created</div></div>
+        <div class="stat" data-fade><div class="v num">XX</div><div class="l">Years of experience</div></div>
+        <div class="stat" data-fade><div class="v num">XX</div><div class="l">Cities</div></div>
+        <div class="stat" data-fade><div class="v num">XX<span class="u">%</span></div><div class="l">Client referrals</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  16 · TESTIMONIALS  ══════════════ -->
+  <section class="testi" id="testi">
+    <div class="wrap testi-stage">
+      <div class="label" style="color:var(--ink-muted); margin-bottom:40px" data-fade>16 — In their words</div>
+      <div class="testi-quote" id="testi-quote">
+        <div class="testi-item active"><q>It finally feels like our home.</q><div class="who"><b>Ananya &amp; Rahul</b> — Residential · Bengaluru</div></div>
+        <div class="testi-item"><q>They didn't just design it. They delivered it.</q><div class="who"><b>Studio North</b> — Workspace · Bengaluru</div></div>
+        <div class="testi-item"><q>One team, one answer, every time.</q><div class="who"><b>House of Form</b> — Commercial · Bengaluru</div></div>
+      </div>
+      <div class="testi-nav" id="testi-nav">
+        <button class="on" data-testi="0"></button>
+        <button data-testi="1"></button>
+        <button data-testi="2"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  17 · JOURNAL  ══════════════ -->
+  <section class="journal section-pad" id="journal">
+    <div class="wrap">
+      <div class="section-head"><div><div class="label" data-fade>17 — The TIK Journal</div><h2 data-reveal-words>Field notes</h2></div>
+      <a class="idx" data-cursor style="align-self:flex-end">All entries →</a></div>
+      <div class="jour-grid">
+        <article class="jour big" data-cursor><div class="img"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?q=80&w=1400&auto=format&fit=crop" alt=""></div><div class="cat">Materials</div><h3>Why we design with five materials, not fifty.</h3><div class="rd">6 min read</div></article>
+        <article class="jour" data-cursor><div class="img"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?q=80&w=1000&auto=format&fit=crop" alt=""></div><div class="cat">Lighting</div><h3>Light is the first finish.</h3><div class="rd">4 min read</div></article>
+        <article class="jour" data-cursor><div class="img"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop" alt=""></div><div class="cat">Spatial Planning</div><h3>The plan is the argument.</h3><div class="rd">5 min read</div></article>
+        <article class="jour" data-cursor><div class="img"><img loading="lazy" data-img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1000&auto=format&fit=crop" alt=""></div><div class="cat">Craft</div><h3>The invisible work of a good joint.</h3><div class="rd">7 min read</div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  18 · FINAL EXPERIENCE  ══════════════ -->
+  <section class="final" id="contact">
+    <div class="final-bg" data-parallax style="background-image:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2000&auto=format&fit=crop')"></div>
+    <div class="final-inner">
+      <div class="label" style="color:rgba(255,255,255,.7)" data-fade>18 — Begin</div>
+      <h2 data-reveal-words>Your space.<br><em>Reimagined.</em></h2>
+      <p>Tell us what you're imagining.</p>
+      <div class="final-cta">
+        <a href="mailto:hello@theinteriorkampany.com" class="btn clay magnetic" data-cursor>Start your project <span class="arrow">→</span></a>
+        <a href="mailto:hello@theinteriorkampany.com" class="btn light magnetic" data-cursor style="background:transparent">Talk to TIK</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  FOOTER  ══════════════ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="top">
+        <div class="mark">
+          <div class="big serif">Let's build<br>something<br>that lasts<span class="dot">.</span></div>
+        </div>
+        <div class="fcol">
+          <h4>Studio</h4>
+          <a href="#work" data-cursor>Work</a>
+          <a href="#difference" data-cursor>Approach</a>
+          <a href="#process" data-cursor>Process</a>
+          <a href="#journal" data-cursor>Journal</a>
+        </div>
+        <div class="fcol">
+          <h4>Connect</h4>
+          <a href="mailto:hello@theinteriorkampany.com" data-cursor>Email</a>
+          <a href="#" data-cursor>Instagram</a>
+          <a href="#" data-cursor>Pinterest</a>
+          <a href="#" data-cursor>LinkedIn</a>
+        </div>
+        <div class="fcol">
+          <h4>Studio</h4>
+          <a href="#" data-cursor>Bengaluru, IN</a>
+          <a href="mailto:hello@theinteriorkampany.com" data-cursor>hello@tik.com</a>
+        </div>
+      </div>
+      <div class="bottom">
+        <span>© 2026 TIK — The Interior Kampany</span>
+        <span>Space, in motion.</span>
+        <a href="#top" data-cursor>Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<!-- ══════════════  LIBRARIES  ══════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module" src="js/scene.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
