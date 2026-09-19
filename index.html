@@ -10,17 +10,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,340;0,9..144,400;0,9..144,500;1,9..144,340&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/app.css" />
+
+<link rel="icon" href="assets/img/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/img/favicon-180.png">
 </head>
 <body>
-
-<!-- ══════════════  LOADER  ══════════════ -->
-<div class="loader" id="loader">
-  <div class="l-inner">
-    <div class="l-mark">TIK<span class="dot">.</span></div>
-    <div class="l-bar"><i></i></div>
-    <div class="l-pct"><span id="l-pct">00</span> — SPACE, IN MOTION</div>
-  </div>
-</div>
 
 <!-- ══════════════  CURSOR  ══════════════ -->
 <div class="cursor" id="cursor"></div>
@@ -28,8 +24,11 @@
 
 <!-- ══════════════  PROGRESS + NAV  ══════════════ -->
 <div class="progress" id="progress"></div>
+<div class="nav-scrim" id="nav-scrim"></div>
 <header class="nav" id="nav">
-  <a href="#top" class="logo" data-cursor><b>TIK</b><span class="dot">.</span></a>
+  <a href="#top" class="logo" data-cursor aria-label="TIK — The Interior Kampany, home">
+    <img class="logo-img" src="assets/img/tik-logo.webp" alt="TIK — The Interior Kampany" width="600" height="466">
+  </a>
   <nav class="nav-links">
     <a href="#work" data-cursor>Work</a>
     <a href="#difference" data-cursor>Approach</a>
@@ -70,7 +69,7 @@
 
       <!-- real-project photograph revealed at hero exit -->
       <div class="hero-photo" id="hero-photo"
-           style="background-image:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop')"></div>
+           style="background-image:url('assets/img/hero-photo.webp')"></div>
 
       <!-- editorial frames -->
       <div class="hero-frames">
@@ -105,12 +104,13 @@
   </section>
 
   <!-- ══════════════  06 · BRAND STATEMENT  ══════════════ -->
-  <section class="brand-statement section-pad">
+  <section class="brand-statement section-pad" id="statement">
     <div class="wrap grid12">
       <h2 class="big" style="grid-column:1 / span 9" data-reveal-words>
-        We don't design interiors. We design <em>how you live.</em>
+        We don't design interiors. We design <em>how you <span class="rotor" id="liveRotor" aria-label="live">live</span><span class="rotor-dot">.</span></em>
       </h2>
-      <p class="meta fade-up" data-fade>
+
+      <p class="meta fade-up" data-fade style="grid-column:9 / span 4">
         TIK is a design-led interior studio and a technology-enabled execution company.
         One vision, carried from the first sketch to the last detail — and made real.
       </p>
@@ -125,64 +125,73 @@
           <div class="label" data-fade>01 — Portfolio</div>
           <h2 data-reveal-words>Selected Spaces</h2>
         </div>
-        <div class="idx fade-up" data-fade>2019 — 2026 · Bengaluru & beyond</div>
+        <div class="idx fade-up" data-fade><span class="idx-count">04</span> spaces you'll wish were yours<br>2019 — 2026 · Bengaluru &amp; beyond</div>
       </div>
 
-      <!-- Project 01 — full-bleed wide -->
-      <article class="project p-wide grid12" data-project data-cursor-view>
-        <div class="project-media" data-parallax>
-          <span class="tag">Residential · Bengaluru</span>
-          <img loading="lazy" data-img
-            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000&auto=format&fit=crop" alt="The Quiet House" />
-        </div>
-        <div class="project-info" style="grid-column:1 / -1">
-          <div class="t"><span class="n">01</span>The Quiet House</div>
-          <div class="m"><span>Residential</span><span>Bengaluru</span><span>2,850 sq.ft.</span></div>
-        </div>
-      </article>
+      <!-- Bento index — all four projects in a single view -->
+      <div class="folio">
 
-      <!-- Project 02 — media left, caption right -->
-      <article class="project p-left grid12" data-project data-cursor-view>
-        <div class="project-media" data-parallax>
-          <span class="tag">Workspace · Bengaluru</span>
-          <img loading="lazy" data-img
-            src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop" alt="Studio North" />
-        </div>
-        <div class="caption">
-          <div class="t serif" style="font-size:clamp(26px,3vw,46px)"><span class="n" style="color:var(--clay)">02</span> Studio North</div>
-          <p class="lead" style="margin-top:16px">A workspace that reads like a home — soft light, honest materials, room to think.</p>
-          <p>Workspace · Bengaluru · 4,200 sq.ft.</p>
-          <a class="more" data-cursor>Open case study <span class="arrow">→</span></a>
-        </div>
-      </article>
+        <!-- 01 — Parappur (feature) -->
+        <article class="folio-card fc-a" data-project data-cursor-view>
+          <div class="project-media" data-parallax>
+            <img loading="lazy" data-img width="1600" height="1200"
+              src="assets/img/work/parappur-kitchen.webp" alt="Parappur kitchen renovation, Malappuram" />
+          </div>
+          <span class="fc-tag">Kitchen Renovation · Malappuram</span>
+          <div class="fc-scrim"></div>
+          <div class="fc-body">
+            <div class="fc-head"><span class="fc-n serif">01</span><h3 class="serif">Parappur Kitchen</h3></div>
+            <p class="fc-meta">Full gut renovation · 2025</p>
+            <span class="fc-cta">See the transformation <span class="arrow">→</span></span>
+          </div>
+        </article>
 
-      <!-- Project 03 — caption left, media right -->
-      <article class="project p-right grid12" data-project data-cursor-view>
-        <div class="caption">
-          <div class="t serif" style="font-size:clamp(26px,3vw,46px)"><span class="n" style="color:var(--clay)">03</span> The Terrace Apartment</div>
-          <p class="lead" style="margin-top:16px">Travertine, oak and a long line of afternoon light across the living floor.</p>
-          <p>Residential · Bengaluru · 1,900 sq.ft.</p>
-          <a class="more" data-cursor>Open case study <span class="arrow">→</span></a>
-        </div>
-        <div class="project-media" data-parallax>
-          <span class="tag">Residential · Bengaluru</span>
-          <img loading="lazy" data-img
-            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1600&auto=format&fit=crop" alt="The Terrace Apartment" />
-        </div>
-      </article>
+        <!-- 02 — Paravanna -->
+        <article class="folio-card fc-b" data-project data-cursor-view>
+          <div class="project-media" data-parallax>
+            <img loading="lazy" data-img width="1600" height="1200"
+              src="assets/img/work/paravanna-residence.webp" alt="Paravanna residence dining room" />
+          </div>
+          <span class="fc-tag">Full-Home Interior · Kerala</span>
+          <div class="fc-scrim"></div>
+          <div class="fc-body">
+            <div class="fc-head"><span class="fc-n serif">02</span><h3 class="serif">Paravanna Residence</h3></div>
+            <p class="fc-meta">Warm materials, soft light · 2025</p>
+            <span class="fc-cta">Step inside <span class="arrow">→</span></span>
+          </div>
+        </article>
 
-      <!-- Project 04 — centred tall -->
-      <article class="project p-tall grid12" data-project data-cursor-view>
-        <div class="project-media" data-parallax>
-          <span class="tag">Commercial · Bengaluru</span>
-          <img loading="lazy" data-img
-            src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1800&auto=format&fit=crop" alt="House of Form" />
-        </div>
-        <div class="project-info" style="grid-column:1 / -1">
-          <div class="t"><span class="n">04</span>House of Form</div>
-          <div class="m"><span>Commercial</span><span>Bengaluru</span><span>6,500 sq.ft.</span></div>
-        </div>
-      </article>
+        <!-- 03 — Foto Haus (tall) -->
+        <article class="folio-card fc-c fc-tall" data-project data-cursor-view>
+          <div class="project-media" data-parallax>
+            <img loading="lazy" data-img width="1067" height="1600"
+              src="assets/img/work/foto-haus.webp" alt="Foto Haus photography studio reception" />
+          </div>
+          <span class="fc-tag">Studio · Commercial</span>
+          <div class="fc-scrim"></div>
+          <div class="fc-body">
+            <div class="fc-head"><span class="fc-n serif">03</span><h3 class="serif">Foto Haus</h3></div>
+            <p class="fc-meta">Gallery-like studio · 2025</p>
+            <span class="fc-cta">See the light <span class="arrow">→</span></span>
+          </div>
+        </article>
+
+        <!-- 04 — Epicure (tall) -->
+        <article class="folio-card fc-d fc-tall" data-project data-cursor-view>
+          <div class="project-media" data-parallax>
+            <img loading="lazy" data-img width="900" height="1600"
+              src="assets/img/work/epicure-kitchen.webp" alt="The Epicure modular kitchen" />
+          </div>
+          <span class="fc-tag">Modular Kitchen</span>
+          <div class="fc-scrim"></div>
+          <div class="fc-body">
+            <div class="fc-head"><span class="fc-n serif">04</span><h3 class="serif">The Epicure</h3></div>
+            <p class="fc-meta">Modular kitchen · 2025</p>
+            <span class="fc-cta">Open the doors <span class="arrow">→</span></span>
+          </div>
+        </article>
+
+      </div>
     </div>
   </section>
 
@@ -389,6 +398,7 @@
     <div class="wrap">
       <div class="top">
         <div class="mark">
+          <img class="footer-logo" src="assets/img/tik-logo.webp" alt="TIK — The Interior Kampany" width="600" height="466">
           <div class="big serif">Let's build<br>something<br>that lasts<span class="dot">.</span></div>
         </div>
         <div class="fcol">

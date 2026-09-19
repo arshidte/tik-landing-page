@@ -15,21 +15,16 @@
   gsap.registerPlugin(ScrollTrigger);
 
   /* ================================================================
-     0 · LOADER
+     0 · INTRO  (no preloader — kick off straight away)
   ================================================================ */
-  const loader = $('#loader'), pct = $('#l-pct'), bar = $('.l-bar i');
-  let loaded = 0;
-  const tick = setInterval(()=>{
-    loaded = Math.min(100, loaded + Math.random()*16);
-    pct.textContent = String(Math.floor(loaded)).padStart(2,'0');
-    bar.style.width = loaded+'%';
-    if(loaded>=100){ clearInterval(tick); finishLoad(); }
-  }, 90);
+  requestAnimationFrame(startIntro);
 
-  function finishLoad(){
-    gsap.to(loader,{ yPercent:-100, duration:1, ease:'expo.inOut', delay:.15,
-      onComplete:()=>{ loader.classList.add('done'); loader.style.display='none'; }});
-    startIntro();
+  /* header scrim shows once you leave the very top */
+  const navScrim = $('#nav-scrim');
+  if(navScrim){
+    const onScrimScroll = ()=> navScrim.classList.toggle('show', window.scrollY > 40);
+    window.addEventListener('scroll', onScrimScroll, { passive:true });
+    onScrimScroll();
   }
 
   /* ================================================================
@@ -209,24 +204,38 @@
     walk(el);
   }
   if(!reduce){
-    $$('[data-reveal-words]').forEach(el=>{
-      wrapWords(el);
-      gsap.to(el.querySelectorAll('.split-word > span'),{
-        yPercent:0, duration:1, ease:'expo.out', stagger:0.05,
-        scrollTrigger:{ trigger:el, start:'top 82%' }
+    // IntersectionObserver drives every reveal — robust against ScrollTrigger
+    // measurement races caused by the tall scrubbed hero + Lenis + pinned sections.
+    const io = new IntersectionObserver((entries,obs)=>{
+      entries.forEach(e=>{
+        if(!e.isIntersecting) return;
+        const el=e.target; obs.unobserve(el);
+        if(el.hasAttribute('data-reveal-words')){
+          const spans=el.querySelectorAll('.split-word > span');
+          gsap.to(spans,{ y:0, opacity:1, duration:1, ease:'expo.out', stagger:0.045 });
+        } else if(el.hasAttribute('data-line')){
+          gsap.to(el,{ y:0, opacity:1, duration:1.1, ease:'expo.out' });
+        } else { // data-fade
+          gsap.to(el,{ opacity:1, y:0, duration:1, ease:'power3.out' });
+        }
       });
-    });
-    $$('[data-line]').forEach(el=>{
-      gsap.to(el,{ yPercent:0, duration:1.1, ease:'expo.out',
-        scrollTrigger:{ trigger:el.closest('.reveal-line'), start:'top 85%' }});
-    });
-    $$('[data-fade]').forEach(el=>{
-      gsap.set(el,{ opacity:0, y:24 });
-      gsap.to(el,{ opacity:1, y:0, duration:1, ease:'power3.out',
-        scrollTrigger:{ trigger:el, start:'top 88%' }});
-    });
+    }, { rootMargin:'0px 0px -10% 0px', threshold:0 });
+
+    $$('[data-reveal-words]').forEach(el=>{ try{ wrapWords(el); }catch(_){} io.observe(el); });
+    $$('[data-line]').forEach(el=>io.observe(el));
+    $$('[data-fade]').forEach(el=>{ gsap.set(el,{ opacity:0, y:24 }); io.observe(el); });
+
+    // safety net: force-reveal anything still hidden & already on-screen after load
+    addEventListener('load',()=>setTimeout(()=>{
+      $$('[data-reveal-words] .split-word > span, [data-line], [data-fade]').forEach(s=>{
+        const r=s.getBoundingClientRect();
+        if(getComputedStyle(s).opacity!=='1' && r.top<innerHeight && r.bottom>0)
+          gsap.set(s,{y:0, opacity:1});
+      });
+    }, 1500));
   } else {
     $$('[data-fade]').forEach(el=>{ el.style.opacity=1; el.style.transform='none'; });
+    $$('[data-reveal-words] .split-word > span, [data-line]').forEach(el=>{ el.style.transform='none'; });
   }
 
   /* ================================================================
@@ -353,6 +362,61 @@
   $$('img[data-img]').forEach(img=>{
     img.addEventListener('error',()=>{ img.style.visibility='hidden'; },{once:true});
   });
+
+  /* ================================================================
+     15 · BRAND STATEMENT — kinetic word rotator + interactive picker
+          "We design how you [live / cook / gather / host / ...]"
+  ================================================================ */
+  (function(){
+    const rotor = $('#liveRotor');
+    if(!rotor) return;
+    const words = ['live','cook','gather','host','unwind','work'];
+    let current = null, idx = 0, timer = null, started = false;
+
+    // reset any word-reveal wrapping the reveal engine applied
+    rotor.innerHTML = '';
+    const first = document.createElement('span');
+    first.className = 'rotor-word'; first.textContent = words[0];
+    rotor.appendChild(first); current = words[0];
+    if(!reduce) gsap.set(first,{ opacity:0 });
+
+    function show(word){
+      if(word===current) return;
+      rotor.setAttribute('aria-label', word);
+      const outgoing = rotor.querySelector('.rotor-word');
+      if(reduce){ outgoing.textContent = word; current = word; return; }
+
+      const w0 = rotor.getBoundingClientRect().width;
+      outgoing.style.position='absolute'; outgoing.style.left='0'; outgoing.style.top='0';
+      const incoming = document.createElement('span');
+      incoming.className='rotor-word'; incoming.textContent = word;
+      rotor.appendChild(incoming);
+      const w1 = rotor.getBoundingClientRect().width;
+
+      gsap.fromTo(rotor,{ width:w0 },{ width:w1, duration:.55, ease:'expo.out',
+        onComplete:()=>{ rotor.style.width=''; } });
+      gsap.to(outgoing,{ y:'-0.34em', opacity:0, duration:.42, ease:'power2.in',
+        onComplete:()=>outgoing.remove() });
+      gsap.fromTo(incoming,{ y:'0.42em', opacity:0 },
+        { y:'0em', opacity:1, duration:.62, ease:'expo.out' });
+      current = word;
+    }
+
+    function next(){ idx = (idx+1) % words.length; show(words[idx]); }
+    function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+    function play(){ stop(); if(!reduce) timer = setInterval(next, 2600); }
+
+    const start = ()=>{ if(started) return; started=true;
+      if(!reduce) gsap.to(first,{ opacity:1, duration:.8, ease:'power3.out' });
+      play(); };
+    const host = $('#statement') || rotor;
+    if(reduce){ start(); }
+    else {
+      new IntersectionObserver((es,ob)=>es.forEach(e=>{
+        if(e.isIntersecting){ start(); ob.disconnect(); }
+      }),{ threshold:.25 }).observe(host);
+    }
+  })();
 
   /* refresh once fonts / images settle */
   addEventListener('load',()=>ScrollTrigger.refresh());
